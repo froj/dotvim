@@ -13,6 +13,11 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
 Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex'
+Plugin 'kien/ctrlp.vim'
+Plugin 'rking/ag.vim'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'greyblake/vim-preview'
+Plugin 'froj/gitv'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -41,6 +46,10 @@ set history=50		" keep 50 lines of command line history
 set ruler   		" show the cursor position all the time
 set showcmd	    	" display incomplete commands
 set incsearch		" do incremental searching
+set ignorecase      
+set smartcase       " smart case sensitivity for search
+
+ca tn tabnew
 
 set t_Co=256
 
@@ -292,14 +301,16 @@ inoremap "      <c-v>"<c-v>"<Left>
 
 let g:ConqueTerm_InsertOnEnter = 1
 
-highlight ColorColumn ctermbg=238 ctermfg=0
+" highlight ColorColumn ctermbg=238 ctermfg=0
 
-highlight CursorColumn ctermbg=234
+" highlight CursorColumn ctermbg=234
 highlight CursorLineNr ctermbg=240
 
 au WinLeave * set nocursorline nocursorcolumn colorcolumn=0
-au WinEnter * set cursorline cursorcolumn colorcolumn=80
-set cursorline cursorcolumn colorcolumn=80
+" au WinEnter * set cursorline cursorcolumn colorcolumn=80
+au WinEnter * set cursorline colorcolumn=80
+" set cursorline cursorcolumn colorcolumn=80
+set cursorline colorcolumn=80
 
 " some python shit
 let python_space_error_highlight = 1
@@ -312,3 +323,10 @@ autocmd FileType c,cpp,python,markdown autocmd BufWritePre <buffer> :%s/\s\+$//e
 highlight Error ctermbg=237
 
 highlight SyntasticError guibg=#2f0000
+
+command Latex execute "!pdflatex % > /dev/null"
+map <F12> :Latex<CR>
+
+let g:PreviewBrowsers='chromium'
+
+ca ga Gitv --all
