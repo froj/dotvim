@@ -13,11 +13,18 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
 Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex'
-Plugin 'kien/ctrlp.vim'
+Plugin 'froj/ctrlp.vim'
 Plugin 'rking/ag.vim'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'greyblake/vim-preview'
+Plugin 'digitaltoad/vim-pug'
+"Plugin 'greyblake/vim-preview'
 Plugin 'froj/gitv'
+"Plugin 'davidhalter/jedi-vim'
+Plugin 'justinmk/vim-syntax-extra'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'wellsjo/wells-colorscheme.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'froj/vim-snippets'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -73,7 +80,6 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-colorscheme molokai
 
 " Show line numbers
 set number
@@ -159,9 +165,6 @@ map <F3> :wq<CR>
 " Maps autocomplete to tab (tab works with shift+tab "
 imap <Tab> <C-N>
 
-" Maps F5 to pdflatex when opening a tex file. "
-au BufNewFile,BufRead *.tex map <F5> :! pdflatex % <CR>
-
 " Automatically opens NERDTree if vim is called without a filename "
 " autocmd vimenter * if !argc() | NERDTree | endif
 
@@ -229,12 +232,6 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-map <Left>  :echo "trololo!"<cr>
-map <Right> :echo "trololo!"<cr>
-map <Up>    :echo "trololo!"<cr>
-map <Down>  :echo "trololo!"<cr>
-
-
 set wildmenu
 set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpe?g,*.png,*.xpm,*.gif,*.pyc
 
@@ -297,19 +294,14 @@ inoremap <expr> ]  strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]
 inoremap        (  ()<Left>
 inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
 
-inoremap "      <c-v>"<c-v>"<Left>
 
 let g:ConqueTerm_InsertOnEnter = 1
 
-" highlight ColorColumn ctermbg=238 ctermfg=0
 
-" highlight CursorColumn ctermbg=234
-highlight CursorLineNr ctermbg=240
+colorscheme wellsokai
 
 au WinLeave * set nocursorline nocursorcolumn colorcolumn=0
-" au WinEnter * set cursorline cursorcolumn colorcolumn=80
 au WinEnter * set cursorline colorcolumn=80
-" set cursorline cursorcolumn colorcolumn=80
 set cursorline colorcolumn=80
 
 " some python shit
@@ -318,7 +310,10 @@ set smartindent
 set smarttab
 
 " Delete trailing whitespace on write.
-autocmd FileType c,cpp,python,markdown autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType c,cpp,python,markdown,latex autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+" Workaround to reload when changed
+autocmd WinEnter * checktime
 
 highlight Error ctermbg=237
 
@@ -330,3 +325,7 @@ map <F12> :Latex<CR>
 let g:PreviewBrowsers='chromium'
 
 ca ga Gitv --all
+
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
