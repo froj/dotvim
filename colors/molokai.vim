@@ -228,7 +228,7 @@ if &t_Co > 255
    if exists("g:rehash256") && g:rehash256 == 1
        hi Normal       ctermfg=252 ctermbg=234
        hi CursorLine               ctermbg=236   cterm=none
-       hi CursorLineNr    ctermfg=226
+       hi CursorLineNr    ctermfg=226   ctermbg=240
 
        hi Boolean         ctermfg=141
        hi Character       ctermfg=222

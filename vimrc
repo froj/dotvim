@@ -12,7 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
-Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex'
+Plugin 'vim-latex/vim-latex'
 Plugin 'froj/ctrlp.vim'
 Plugin 'rking/ag.vim'
 Plugin 'digitaltoad/vim-pug'
@@ -25,6 +25,8 @@ Plugin 'wellsjo/wells-colorscheme.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'froj/vim-snippets'
+Plugin 'ervandew/supertab'
+Plugin 'froj/writegooder.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -163,7 +165,7 @@ imap <F2> <esc><c-w><c-w>
 " Maps write & close to F3 "
 map <F3> :wq<CR>
 " Maps autocomplete to tab (tab works with shift+tab "
-imap <Tab> <C-N>
+"imap <Tab> <C-N>
 
 " Automatically opens NERDTree if vim is called without a filename "
 " autocmd vimenter * if !argc() | NERDTree | endif
@@ -326,6 +328,8 @@ let g:PreviewBrowsers='chromium'
 
 ca ga Gitv --all
 
-let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
